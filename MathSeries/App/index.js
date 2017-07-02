@@ -6,6 +6,15 @@ import {
 } from 'react-native';
 
 export default class App extends Component {
+  constructor(props){
+    super(props);
+    this.state ={
+      a:0,
+      d:0,
+      start:false,
+      n:0
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -13,13 +22,25 @@ export default class App extends Component {
          Math Series
         </Text>
         <Text style={styles.instructions}>
-          Series is 3,5,8 . . . 
+          Series is {this.state.seriesTxt}
         </Text>
-        <Text style={styles.instructions}>
+        <Text style={styles.instructions} onPress={this.start.bind(this)}>
          Tab to play
         </Text>
+        <Text style={styles.instructions}></Text>
       </View>
     );
+  }
+  start(){
+    const a = Math.floor(Math.random() * 10) + 1;
+    const d = Math.floor(Math.random() * 10) + 1;
+    var nextOne = a+ d;
+    var nextTwo = nextOne+d;
+    this.setState({
+      start:true,
+      seriesTxt : a + ', '+ nextOne  + ', '+ nextTwo +'  ...'
+    });
+   // startGame(a,d,0);
   }
 }
 
