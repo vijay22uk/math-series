@@ -4,38 +4,26 @@ import {
   Text,
   View
 } from 'react-native';
-import Welcome from './welcome'
-import Game from './game'
-export default class App extends Component {
-  constructor(props){
-    super(props);
-    this.state ={
-      a:0,
-      d:0,
-      start:false,
-      n:0
-    }
-  }
+//todo stateless Component
+export default class Welcome extends Component {
   render() {
     return (
-      <View style={{flex:1}}>
-       { (! this.state.start ) && (<Welcome  start={this.start.bind(this)} />)
-       }
-       { (this.state.start ) && (<Game  end={this.end.bind(this)} />)
-       }
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+         Math Series
+        </Text>
+        <Text style={styles.instructions}>
+          Guess number in series ...
+        </Text>
+        <Text style={styles.instructions} onPress={this.start.bind(this)}>
+         Tab to play
+        </Text>
+        <Text style={styles.instructions}></Text>
       </View>
     );
   }
-  end(){
-    this.setState({
-      start:false
-    });
-  }
   start(){
-   
-    this.setState({
-      start:true
-    });
+    this.props.start();
    // startGame(a,d,0);
   }
 }
